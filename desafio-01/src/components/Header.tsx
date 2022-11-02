@@ -3,7 +3,6 @@ import { PlusCircle } from 'phosphor-react';
 import todoLogo from "../assets/todoLogo.svg";
 
 import styles from "../components/Header.module.css";
-import { Circle } from "phosphor-react";
 
 export function Header() {
   return (
