@@ -16,7 +16,7 @@ export function Header({onAddTask}: Props) {
     event.preventDefault();
 
     onAddTask(title);
-    setTitle("");
+    setTitle(""); // apaga o texto depois de add uma tarefa
   }
 
   function onChangeTitle(event: ChangeEvent<HTMLInputElement>) {

@@ -6,14 +6,16 @@ import uuid from "react-uuid";
 // e determinei que Props recebe tasks que eh um array de ITask
 interface Props {
   tasks: ITask[];
+  onDelete: (task: string) => void; // crio uma funcao onde task eh uma string e nao devolve algo
 }
 
-export function Tasks({ tasks } : Props) {
+// add o onDelete nessa function e mando o ondelete pra Task tbm la embaixo
+
+export function Tasks({ tasks , onDelete} : Props) {
   // contador de tarefas adicionadas
   const tasksCounter = tasks.length;
   // contador de tarefas concluidas
   const completedTasks = tasks.filter((task) => task.isTaskCompleted).length
-
 
   return (
     <section className={styles.tasks}>
@@ -33,7 +35,10 @@ export function Tasks({ tasks } : Props) {
         {tasks.map(task => (
           <Task 
           key={task.id}  
-          task={task}/>
+          task={task}
+          onDelete={onDelete}
+          />
+          
         ))}
       </div>
     </section>

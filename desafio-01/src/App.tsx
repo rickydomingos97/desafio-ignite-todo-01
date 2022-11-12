@@ -46,13 +46,24 @@ function App() {
         taskTitle: taskTitle,
         isTaskCompleted: false
       } 
+      
     ])
   }
 
+  // function pra deletar se o id for igual a task que voce selecionou
+  // e no final cria uma nova array com as tasks que nao foram deletadas
+
+  function deleteTaskById(taskId: string) {
+    const newTasks = tasks.filter(task => task.id !== taskId);
+    setTasks(newTasks)
+    console.log(taskId)
+  }
+
+  // pego o ondelete e mando pra dentro de Tasks
   return (
     <>
       <Header onAddTask={addTask}/>
-      <Tasks tasks={tasks} />
+      <Tasks tasks={tasks} onDelete={deleteTaskById}/>
     </>
   );
 }
