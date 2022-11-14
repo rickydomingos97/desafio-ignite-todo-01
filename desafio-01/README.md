@@ -17,3 +17,5 @@ Desafio proposto na trilha do Ignite React para aplicar os conhecimentos adquiri
     * no terminal rodar: "npm run dev"
     * abrir a url no navegador!
 
+  "https://github.com/rickydomingos97/desafio-ignite-todo-01/blob/main/desafio-01/src/assets/screenTodo.png?raw=true"
+
