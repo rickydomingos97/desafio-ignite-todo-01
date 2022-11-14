@@ -2,6 +2,7 @@ import { ITask } from "../App";
 import { Task } from "./Task";
 import styles from "./Tasks.module.css";
 import uuid from "react-uuid";
+import { EmptyTasks } from "./EmptyTasks";
 // passsei as tasks pra dentro de task por props,
 // e determinei que Props recebe tasks que eh um array de ITask
 interface Props {
@@ -40,8 +41,14 @@ export function Tasks({ tasks , onDelete, onComplete} : Props) {
           onDelete={onDelete}
           onComplete={onComplete}
           />
-          
         ))}
+
+          {tasks.length <= 0 && (
+            <section>
+              <EmptyTasks />
+            </section>
+          )}
+
       </div>
     </section>
   );

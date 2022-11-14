@@ -13,35 +13,14 @@ export interface ITask {
 
 function App() {
   
-  const [tasks, setTasks] = useState([
-    {
-      id: "01",
-      taskTitle: "tarefa 01",
-      isTaskCompleted: true
-    },
-    {
-      id: "02",
-      taskTitle: "tarefa 02",
-      isTaskCompleted: true
-    },
-    {
-      id: "03",
-      taskTitle: "tarefa 03",
-      isTaskCompleted: true
-    },
-    {
-      id: "04",
-      taskTitle: "tarefa 04",
-      isTaskCompleted: true
-    }
-
-  ]);
+  const [tasks, setTasks] = useState<ITask[]>([]);
 
   function addTask(taskTitle: string) {
     event.preventDefault();
 
     setTasks([
-      ...tasks, {
+      ...tasks, 
+      {
         id: uuid(),
         taskTitle: taskTitle,
         isTaskCompleted: false
