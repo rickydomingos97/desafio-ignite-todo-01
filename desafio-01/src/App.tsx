@@ -1,9 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Header } from "./components/Header";
 import { Tasks } from "./components/Tasks";
 import "./styles/global.css";
 
 import uuid from 'react-uuid'
+
+//salvando no localstorage:
+const LOCAL_STORAGE_KEY = "todo:savedTasks";
 
 export interface ITask {
   id: string;
@@ -12,13 +15,29 @@ export interface ITask {
 }
 
 function App() {
-  
   const [tasks, setTasks] = useState<ITask[]>([]);
+
+
+  function loadSavedTasks() {
+    const savedTasks = localStorage.getItem(LOCAL_STORAGE_KEY);
+      if(savedTasks) {
+        setTasks(JSON.parse(savedTasks)); //converte json para array
+      }
+  }
+ //chamando a funcao uma vez que a pagina carregar
+  useEffect(() => {
+    loadSavedTasks();
+  }, []);
+
+  function setTasksAndSave(newTasks: ITask[]): void {
+    setTasks(newTasks);
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(newTasks)); // converte array para Json
+  }
 
   function addTask(taskTitle: string) {
     event.preventDefault();
 
-    setTasks([
+    setTasksAndSave([
       ...tasks, 
       {
         id: uuid(),
@@ -34,7 +53,7 @@ function App() {
 
   function deleteTaskById(taskId: string) {
     const newTasks = tasks.filter(task => task.id !== taskId);
-    setTasks(newTasks)
+    setTasksAndSave(newTasks)
     console.log(taskId)
   }
   // pego o ondelete e mando pra dentro de Tasks
@@ -49,7 +68,7 @@ function App() {
       }
       return task;
     });
-    setTasks(newTasks);
+    setTasksAndSave(newTasks);
   }
 
   return (
