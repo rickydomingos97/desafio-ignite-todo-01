@@ -7,11 +7,12 @@ import uuid from "react-uuid";
 interface Props {
   tasks: ITask[];
   onDelete: (task: string) => void; // crio uma funcao onde task eh uma string e nao devolve algo
+  onComplete: (task: string) => void;
 }
 
 // add o onDelete nessa function e mando o ondelete pra Task tbm la embaixo
 
-export function Tasks({ tasks , onDelete} : Props) {
+export function Tasks({ tasks , onDelete, onComplete} : Props) {
   // contador de tarefas adicionadas
   const tasksCounter = tasks.length;
   // contador de tarefas concluidas
@@ -37,6 +38,7 @@ export function Tasks({ tasks , onDelete} : Props) {
           key={task.id}  
           task={task}
           onDelete={onDelete}
+          onComplete={onComplete}
           />
           
         ))}

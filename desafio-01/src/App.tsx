@@ -17,12 +17,12 @@ function App() {
     {
       id: "01",
       taskTitle: "tarefa 01",
-      isTaskCompleted: false
+      isTaskCompleted: true
     },
     {
       id: "02",
       taskTitle: "tarefa 02",
-      isTaskCompleted: false
+      isTaskCompleted: true
     },
     {
       id: "03",
@@ -32,7 +32,7 @@ function App() {
     {
       id: "04",
       taskTitle: "tarefa 04",
-      isTaskCompleted: false
+      isTaskCompleted: true
     }
 
   ]);
@@ -58,12 +58,29 @@ function App() {
     setTasks(newTasks)
     console.log(taskId)
   }
-
   // pego o ondelete e mando pra dentro de Tasks
+
+  function toogleTaskCompletedById(taskId: string) {
+    const newTasks = tasks.map(task => {
+      if (task.id == taskId) {
+        return {
+          ...task,
+          isTaskCompleted: !task.isTaskCompleted,
+        };
+      }
+      return task;
+    });
+    setTasks(newTasks);
+  }
+
   return (
     <>
       <Header onAddTask={addTask}/>
-      <Tasks tasks={tasks} onDelete={deleteTaskById}/>
+      <Tasks 
+        tasks={tasks} 
+        onDelete={deleteTaskById}
+        onComplete={toogleTaskCompletedById}
+        />
     </>
   );
 }
